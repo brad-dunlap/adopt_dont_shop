@@ -1,0 +1,18 @@
+<h1> Application for Adoption </h1>
+
+<%= form_with url: "/applications", method: :post, local: true do |form| %>
+	<p><%= form.label :name, "Name" %></p>
+	<p><%= form.text_field :name %></p>
+	<p><%= form.label :street_address, "Street Address" %></p>
+	<p><%= form.text_field :street_address %></p>
+	<p><%= form.label :city, "City"%></p>
+	<p><%= form.text_field :city %></p>
+	<p><%= form.label :state, "State"%></p>
+	<p><%= form.text_field :state %></p>
+	<p><%= form.label :zip_code, "Zipcode"%></p>
+	<p><%= form.text_field :zip_code %></p>
+	<p><%= form.label :description, "Why do you want to adopt?"%></p>
+	<p><%= form.text_area :description, size: "70x5" %></p>
+	
+	<p><%= form.submit "Submit Application" %></p>
+	<% end %>

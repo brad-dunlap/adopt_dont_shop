@@ -8,8 +8,7 @@ RSpec.describe 'the application show' do
     PetApplication.create!(pet: pickles, application: app_1)
 
     visit "/applications/#{app_1.id}"
-    save_and_open_page
-
+  
     expect(page).to have_content(app_1.name)
     expect(page).to have_content(app_1.street_address)
     expect(page).to have_content(app_1.city)
