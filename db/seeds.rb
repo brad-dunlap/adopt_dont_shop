@@ -9,7 +9,7 @@
 Application.destroy_all
 Pet.destroy_all
 
-Application.create!(name: 'Bobby Lully', address: '123 Sesame Street, Denver, CO 12345', description: "I need a friend", pets: "Scooby", status: "Pending")
+Application.create!(name: 'Bobby Lully', street_address: '123 Sesame Street', city: 'Denver', state: 'CO', zip_code: 12345, description: "I need a friend", status: "Pending")
 
 Shelter.create!(foster_program: false, name: "The Farm", city: "Denver", rank: 2)
 
