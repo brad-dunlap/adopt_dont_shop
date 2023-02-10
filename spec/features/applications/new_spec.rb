@@ -22,4 +22,18 @@ RSpec.describe 'the application show' do
 		expect(page).to have_content(application.description)
 		expect(page).to have_content(application.status)
 	end
+
+	it 'displays error message when required fields are not filled in' do
+    visit '/applications/new'
+
+		fill_in "Name", with: "Bobby"
+		fill_in "Street Address", with: "123 Fake Street"
+		fill_in "City", with: "Denver"
+		fill_in "State", with: "CO"
+
+    click_button 'Submit Application'
+    expect(page).to have_current_path('/applications/new')
+		expect(page).to have_content("Zip code can't be blank")
+		expect(page).to have_content("Zip code is not a number")
+  end
 end
