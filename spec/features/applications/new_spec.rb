@@ -12,14 +12,12 @@ RSpec.describe 'the application show' do
 		fill_in "City", with: "Denver"
 		fill_in "State", with: "CO"
 		fill_in "Zipcode", with: "12345"
-		fill_in "Why do you want to adopt?", with: "This is a description"
 
 		click_button "Submit Application"
 		application = Application.last
 
 		expect(current_path).to eq("/applications/#{application.id}")
 		expect(page).to have_content(application.name)
-		expect(page).to have_content(application.description)
 		expect(page).to have_content(application.status)
 	end
 
