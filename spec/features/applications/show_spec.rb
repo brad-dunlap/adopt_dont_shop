@@ -88,4 +88,32 @@ RSpec.describe 'the application show' do
     expect(page).to have_field(:description)
     expect(page).to have_button("Submit Application")
   end
+
+  it 'can find partial matches when searching for a pet' do
+    shelter_1 = Shelter.create!(foster_program: true, name: 'Fuzzy Friends', city: 'Denver', rank: 1)
+    pickles = shelter_1.pets.create!(adoptable: true, age: 2, breed: 'Domestic Shorthair', name: 'Ms. Pickles')
+    chutney = shelter_1.pets.create!(adoptable: true, age: 8, breed: 'Domestic Shorthair', name: 'Ms. Chutney')
+    app_1 = Application.create!(name: 'Bobby Luly', street_address: '123 Sesame Street', city: 'Denver', state: 'CO', zip_code: 80123)
+    
+		visit "/applications/#{app_1.id}"
+
+    fill_in 'Search for Pet by name!', with: 'Ms. '
+		click_button 'Submit'
+
+    expect(page).to have_content('Ms. Pickles')
+    expect(page).to have_content('Ms. Chutney')
+  end
+
+  it 'can find case insensitive matches when searching for a pet' do
+    shelter_1 = Shelter.create!(foster_program: true, name: 'Fuzzy Friends', city: 'Denver', rank: 1)
+    pickles = shelter_1.pets.create!(adoptable: true, age: 2, breed: 'Domestic Shorthair', name: 'Ms. Pickles')
+    app_1 = Application.create!(name: 'Bobby Luly', street_address: '123 Sesame Street', city: 'Denver', state: 'CO', zip_code: 80123)
+    
+		visit "/applications/#{app_1.id}"
+
+    fill_in 'Search for Pet by name!', with: 'Ms. PiCkLeS'
+		click_button 'Submit'
+
+    expect(page).to have_content('Ms. Pickles')
+  end
 end
