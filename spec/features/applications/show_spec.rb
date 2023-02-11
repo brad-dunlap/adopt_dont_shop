@@ -70,5 +70,6 @@ RSpec.describe 'the application show' do
 
 			expect(current_path).to eq("/applications/#{app_1.id}")
 			expect(page).to have_content("Pending")		
+      expect(page).to_not have_field("section#add_pets")
 	end
 end
