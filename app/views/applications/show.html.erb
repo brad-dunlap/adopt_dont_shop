@@ -6,13 +6,13 @@
 <p>Description: <%= @application.description %></p>
 <p>Application status: <%= @application.status %></p>
 
-<section id='add_pets'>
 <p>
   Pets applying for: <% @application_pets.each do |pet|%>
     <%= link_to pet.name, "/pets/#{pet.id}" %>,
   <% end %>
 </p>
 
+<section id='add_pets'>
 <% if @application.status == "In Progress" %>
 <p> Add a pet to your application! </p>
 		<%= form_tag("/applications/#{@application.id}", method: :get) do %>
@@ -45,4 +45,3 @@
 			<% end %>
 		<% end %>
 	</section>
-
