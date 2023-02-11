@@ -12,6 +12,7 @@ Pet.destroy_all
 Shelter.destroy_all
 
 shelter1 = Shelter.create!(foster_program: false, name: "The Farm", city: "Denver", rank: 2)
+shelter2 = Shelter.create!(foster_program: false, name: "Dog Heaven", city: "Denver", rank: 2)
 scooby = shelter1.pets.create!(adoptable: true, age: 4, breed: "Great Dane", shelter_id: 1, name: 'Scooby', )
 scrappy = shelter1.pets.create!(adoptable: true, age: 1, breed: "Great Dane", shelter_id: 1, name: 'Scrappy', )
 

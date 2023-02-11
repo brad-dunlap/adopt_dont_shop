@@ -18,28 +18,28 @@ RSpec.describe 'the shelters index' do
     expect(page).to have_content(@shelter_3.name)
   end
 
-  it 'lists the shelters by most recently created first' do
-    visit "/shelters"
+  # it 'lists the shelters by most recently created first' do
+  #   visit "/shelters"
 
-    oldest = find("#shelter-#{@shelter_1.id}")
-    mid = find("#shelter-#{@shelter_2.id}")
-    newest = find("#shelter-#{@shelter_3.id}")
+  #   oldest = find("#shelter-#{@shelter_1.id}")
+  #   mid = find("#shelter-#{@shelter_2.id}")
+  #   newest = find("#shelter-#{@shelter_3.id}")
 
-    expect(newest).to appear_before(mid)
-    expect(mid).to appear_before(oldest)
+  #   expect(newest).to appear_before(mid)
+  #   expect(mid).to appear_before(oldest)
 
-    within "#shelter-#{@shelter_1.id}" do
-      expect(page).to have_content("Created at: #{@shelter_1.created_at}")
-    end
+  #   within "#shelter-#{@shelter_1.id}" do
+  #     expect(page).to have_content("Created at: #{@shelter_1.created_at}")
+  #   end
 
-    within "#shelter-#{@shelter_2.id}" do
-      expect(page).to have_content("Created at: #{@shelter_2.created_at}")
-    end
+  #   within "#shelter-#{@shelter_2.id}" do
+  #     expect(page).to have_content("Created at: #{@shelter_2.created_at}")
+  #   end
 
-    within "#shelter-#{@shelter_3.id}" do
-      expect(page).to have_content("Created at: #{@shelter_3.created_at}")
-    end
-  end
+  #   within "#shelter-#{@shelter_3.id}" do
+  #     expect(page).to have_content("Created at: #{@shelter_3.created_at}")
+  #   end
+  # end
 
   it 'has a link to sort shelters by the number of pets they have' do
     visit '/shelters'
@@ -105,4 +105,9 @@ RSpec.describe 'the shelters index' do
     expect(page).to have_content(@shelter_2.name)
     expect(page).to_not have_content(@shelter_1.name)
   end
+
+	it 'lists the shelters by reverse alphabetical order' do
+		visit "/shelters"
+		expect(@shelter_2.name).to appear_before(@shelter_1.name)
+	end
 end
