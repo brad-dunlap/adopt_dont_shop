@@ -8,3 +8,4 @@ class Application < ApplicationRecord
   validates :state, presence: true 
   validates :zip_code, presence: true, numericality: true
 end
+

@@ -3,9 +3,27 @@
 <p>Name of Applicant: <%= @application.name %></p>
 <p>Address: <%= @application.street_address %>, <%= @application.city %>, <%= @application.state %>, <%= @application.zip_code %></p>
 <p>Description: <%= @application.description %></p>
+<p>Application status: <%= @application.status %></p>
 <p>
   Pets applying for: <% @pets.each do |pet|%>
     <%= link_to pet.name, "/pets/#{pet.id}" %>
   <% end %>
 </p>
-<p>Application status: <%= @application.status %></p>
+
+<section id = "add_pets">
+<h2> Add a Pet to this Application </h2>
+<% if @application.status == "In Progress" %>
+		<%= form_tag("/applications/#{@application.id}", method: :get) do %>
+		<%= label_tag(:search, "Search for Pet by name!") %>
+		<%= text_field_tag(:search, params[:search])%>
+		<%= submit_tag("Submit") %>
+		<% end %>
+	<% end %>
+
+	<% if @pet_search.present? %>
+		<% @pet_search.each do |pet| %>
+			<%= pet.name %>
+			<% end %>
+		<% end %>
+
+</section>
