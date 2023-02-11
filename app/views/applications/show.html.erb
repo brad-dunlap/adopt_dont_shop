@@ -2,6 +2,7 @@
 
 <p>Name of Applicant: <%= @application.name %></p>
 <p>Address: <%= @application.street_address %>, <%= @application.city %>, <%= @application.state %>, <%= @application.zip_code %></p>
+
 <p>Description: <%= @application.description %></p>
 <p>Application status: <%= @application.status %></p>
 
@@ -11,8 +12,9 @@
     <%= link_to pet.name, "/pets/#{pet.id}" %>,
   <% end %>
 </p>
-<h2> Add a Pet to this Application </h2>
+
 <% if @application.status == "In Progress" %>
+<p> Add a pet to your application! </p>
 		<%= form_tag("/applications/#{@application.id}", method: :get) do %>
 		<%= label_tag(:search, "Search for Pet by name!") %>
 		<%= text_field_tag(:search, params[:search])%>
@@ -29,5 +31,18 @@
         <% end %>
 		  <% end %>
 		<% end %>
-
 </section>
+
+<section id='submit_application'>
+	<% if @application.status == "In Progress" %>
+		<% if @application.has_pets? %>
+			<%= form_with url: "/applications/#{@application.id}", method: :patch, local: true do |form| %>
+				<p><%= form.label :description, "Why would you make a good owner for these pet(s)?"%></p>
+				<p><%= form.text_area :description, required: true, size: "70x5" %></p>
+				<p><%= form.submit "Submit Application", required: true %></p>
+			
+				<% end %>
+			<% end %>
+		<% end %>
+	</section>
+

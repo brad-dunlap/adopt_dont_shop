@@ -7,5 +7,11 @@ class Application < ApplicationRecord
   validates :city, presence: true
   validates :state, presence: true 
   validates :zip_code, presence: true, numericality: true
+
+
+	def has_pets?
+		!pets.empty?
+	end
 end
+
 
