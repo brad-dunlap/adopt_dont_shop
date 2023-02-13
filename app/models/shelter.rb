@@ -38,6 +38,6 @@ class Shelter < ApplicationRecord
   end
 
 	def self.shelter_app_pending
-		joins(:pets, :applications).where("applications.status = 'Pending'").pluck(:name).uniq
+		joins(:pets, :applications).where("applications.status = 'Pending'").distinct.pluck(:name)
 	end
 end
