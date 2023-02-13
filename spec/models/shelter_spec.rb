@@ -54,6 +54,8 @@ RSpec.describe Shelter, type: :model do
     describe '#shelter_app_pending' do
       it 'shows all shelters with pending applications' do
         expect(Shelter.shelter_app_pending).to eq([@shelter_1.name])
+        expect(Shelter.shelter_app_pending).to_not eq([@shelter_2.name])
+        expect(Shelter.shelter_app_pending).to_not eq([@shelter_3.name])
       end
     end
   end
