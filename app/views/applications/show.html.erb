@@ -7,14 +7,14 @@
 </p>
 
 <section id='add_pets'>
-<% if @application.status == "In Progress" %>
-<p> Add a pet to your application! </p>
-		<%= form_tag("/applications/#{@application.id}", method: :get) do %>
-		<%= label_tag(:search, "Search for Pet by name!") %>
-		<%= text_field_tag(:search, params[:search])%>
-		<%= submit_tag("Submit") %>
-		<% end %>
-	<% end %>
+  <% if @application.status == "In Progress" %>
+    <p> Add a pet to your application! </p>
+    <%= form_tag("/applications/#{@application.id}", method: :get) do %>
+      <%= label_tag(:search, "Search for Pet by name!") %>
+      <%= text_field_tag(:search, params[:search])%>
+      <%= submit_tag("Submit") %>
+    <% end %>
+  <% end %>
 
 	<% if @pet_search.present? %>
 		<% @pet_search.each do |pet| %>
@@ -22,9 +22,9 @@
       <%= form_with url: "/applications/#{@application.id}", method: :patch, local: true do |form| %>
         <%= form.hidden_field :pet, value: pet.id %>
         <%= form.submit "Adopt #{pet.name}" %>
-        <% end %>
-		  <% end %>
+      <% end %>
 		<% end %>
+	<% end %>
 </section>
 
 <section id='submit_application'>
@@ -34,8 +34,7 @@
 				<p><%= form.label :description, "Why would you make a good owner for these pet(s)?"%></p>
 				<p><%= form.text_area :description, required: true, size: "70x5" %></p>
 				<p><%= form.submit "Submit Application", required: true %></p>
-			
-				<% end %>
 			<% end %>
 		<% end %>
-	</section>
+	<% end %>
+</section>

@@ -15,5 +15,3 @@ shelter1 = Shelter.create!(foster_program: false, name: "The Farm", city: "Denve
 shelter2 = Shelter.create!(foster_program: false, name: "Dog Heaven", city: "Denver", rank: 2)
 scooby = shelter1.pets.create!(adoptable: true, age: 4, breed: "Great Dane", name: 'Scooby', )
 scrappy = shelter2.pets.create!(adoptable: true, age: 1, breed: "Great Dane", name: 'Scrappy', )
-
-

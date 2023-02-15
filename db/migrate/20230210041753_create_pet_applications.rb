@@ -4,6 +4,7 @@ class CreatePetApplications < ActiveRecord::Migration[5.2]
       t.integer :pet_status, default: 0
       t.references :pet, foreign_key: true
       t.references :application, foreign_key: true
+      
 			t.timestamps
     end
   end

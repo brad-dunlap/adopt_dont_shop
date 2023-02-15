@@ -8,6 +8,7 @@ class CreateApplication < ActiveRecord::Migration[5.2]
       t.integer :zip_code
       t.string :description
       t.integer :status, default: 0
+      
 			t.timestamps
     end
   end

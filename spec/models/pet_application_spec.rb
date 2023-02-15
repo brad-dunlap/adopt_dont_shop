@@ -7,7 +7,6 @@ RSpec.describe PetApplication, type: :model do
   end
 
   describe '#class_methods' do
-
     before do
       @shelter_1 = Shelter.create!(foster_program: true, name: 'Fuzzy Friends', city: 'Denver', rank: 1)
       @app_1 = Application.create!(name: 'Bobby Luly', street_address: '123 Sesame Street', city: 'Denver', state: 'CO', zip_code: 80123, status: 1)
@@ -16,7 +15,6 @@ RSpec.describe PetApplication, type: :model do
       @pet_2 = @app_2.pets.create!(adoptable: true, age: 3, breed: 'Maine Coon', name: 'Kitty', shelter_id: @shelter_1.id)
       @pet_app_1 = PetApplication.create(application: @app_1, pet: @pet_1)
       @pet_app_2 = PetApplication.create(application: @app_2, pet: @pet_2)
-      
     end
 
     it '#find_pet_apps' do
