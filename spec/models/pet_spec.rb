@@ -35,9 +35,23 @@ RSpec.describe Pet, type: :model do
   end
 
   describe 'instance methods' do
+
+    before do
+    @app_1 = Application.create!(name: 'Bobby Luly', street_address: '123 Sesame Street', city: 'Denver', state: 'CO', zip_code: 80123, status: 1)
+    @pet_app_1 = PetApplication.create!(application: @app_1, pet: @pet_3)
+      
+    end
+
     describe '.shelter_name' do
       it 'returns the shelter name for the given pet' do
         expect(@pet_3.shelter_name).to eq(@shelter_1.name)
+      end
+    end
+
+    describe '.approved' do
+      it 'returns the pet status' do
+        expect(@pet_3.approved(@app_1.id)).to eq("Pending")
+        expect(@pet_3.approved(@app_1.id)).to_not eq("Accepted")
       end
     end
   end
