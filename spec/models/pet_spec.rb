@@ -51,6 +51,7 @@ RSpec.describe Pet, type: :model do
     describe '.approved' do
       it 'returns the pet status' do
         expect(@pet_3.approved(@app_1.id)).to eq("Pending")
+        expect(@pet_3.approved(@app_1.id)).to_not eq("Accepted")
       end
     end
   end
