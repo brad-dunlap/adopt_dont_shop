@@ -16,8 +16,5 @@ class Pet < ApplicationRecord
 
   def approved(app_id)
     pet_applications.where(application_id: app_id).first.pet_status
-    # pet_applications.where(application_id: app_id).pluck(:pet_status).last
-    # status == "Accepted"
-    # PetApplication.find_by(pet_id: self.id, application_id: app_id).pet_status
   end
 end

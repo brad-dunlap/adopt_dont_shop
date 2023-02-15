@@ -51,6 +51,5 @@ RSpec.describe 'Admin application show' do
 
     expect(page).to have_button("Approve #{pickles.name}")
     expect(page).to have_button("Reject #{pickles.name}")
-    
   end
 end

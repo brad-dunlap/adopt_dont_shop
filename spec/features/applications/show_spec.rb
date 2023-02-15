@@ -29,6 +29,7 @@ RSpec.describe 'the application show' do
 				
 		fill_in 'Search for Pet by name!', with: 'Ms. Pickles'
 		click_button 'Submit'
+    
 		expect(current_path).to eq("/applications/#{app_1.id}")
 		expect(page).to have_content("Ms. Pickles")
 	end
@@ -46,7 +47,6 @@ RSpec.describe 'the application show' do
 
     expect(current_path).to eq("/applications/#{app_1.id}")
     expect(page).to have_link('Ms. Pickles')
-    
   end
 
 	it 'can add descrition as to reason for adoption' do
@@ -66,9 +66,9 @@ RSpec.describe 'the application show' do
 			click_button 'Submit Application'
 		end
 
-			expect(current_path).to eq("/applications/#{app_1.id}")
-			expect(page).to have_content("Pending")		
-      expect(page).to_not have_field(:search)
+    expect(current_path).to eq("/applications/#{app_1.id}")
+    expect(page).to have_content("Pending")		
+    expect(page).to_not have_field(:search)
 	end
 
   it 'will not show submit application section until pets are added' do

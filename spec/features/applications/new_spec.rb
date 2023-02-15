@@ -30,6 +30,7 @@ RSpec.describe 'the application show' do
 		fill_in "State", with: "CO"
 
     click_button 'Submit Application'
+		
     expect(page).to have_current_path('/applications/new')
 		expect(page).to have_content("Zip code can't be blank")
 		expect(page).to have_content("Zip code is not a number")
