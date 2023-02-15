@@ -1,22 +1,19 @@
 <h1> <%= "Application #{@application.id}" %> </h1>
-
 <p>Name of Applicant: <%= @application.name %></p>
 <p>Address: <%= @application.street_address %>, <%= @application.city %>, <%= @application.state %>, <%= @application.zip_code %></p>
-
 <p>Description: <%= @application.description %></p>
 <p>Application status: <%= @application.status %></p>
-
 <p>
-  Pets applying for: <% @application_pets.each do |pet|%>
-    <% if @application.status == 'Pending'%>
+  Pets applying for: <% @application.pets.each do |pet|%>
       <%= link_to pet.name, "/pets/#{pet.id}" %>
-      <%= button_to "Approve #{pet.name}", "/admin/applications/#{@application.id}?pet_id=#{pet.id}&status=approved", method: :patch %>
-      <%= button_to "Reject #{pet.name}", "/admin/applications/#{@application.id}?pet_id=#{pet.id}&status=rejected", method: :patch %>
-    <% else %>
-      <%= pet.name %>'s application is <%= @application.status %>
-
+    <% if pet.approved(@application.id) == "Pending" %>
+      <%= button_to "Approve #{pet.name}", "/admin/applications/#{@application.id}", method: :patch, params: {status: 1, pet_id: pet.id } %>
+      <%= button_to "Reject #{pet.name}", "/admin/applications/#{@application.id}", method: :patch, params: {status: 2, pet_id: pet.id } %>
+    <% elsif pet.approved(@application.id) == "Approved" %>
+      <%= pet.name %>'s application is Approved
+    <% elsif pet.approved(@application.id) == "Rejected" %>
+      <%= pet.name %>'s application is Rejected
     <% end %>
     <br>
   <% end %>
 </p>
-
