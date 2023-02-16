@@ -20,9 +20,12 @@ RSpec.describe "Admin Shelters Index" do
 			@app_pet = PetApplication.create!(pet: @pickles, application: @app1)
     
 			visit "/admin/shelters"
-			expect(page).to have_content("Shelters with Pending Applications")
+
+			expect(page).to have_content(@shelter_1.name)
+			expect(page).to have_content(@shelter_2.name)
 			
 			within("section#pending_apps") do
+				expect(page).to have_content("Shelters with Pending Applications")
 				expect(page).to have_content(@shelter_1.name)
 				expect(page).to_not have_content(@shelter_2.name)
 			end

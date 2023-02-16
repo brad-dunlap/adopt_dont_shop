@@ -12,5 +12,3 @@ class Application < ApplicationRecord
 		!pets.empty?
 	end
 end
-
-
