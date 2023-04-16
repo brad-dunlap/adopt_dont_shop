@@ -1,20 +1,33 @@
-<h1>All pets</h1>
+<div class="bg-gray-100">
+  <div class="container mx-auto py-10">
+    <h1 class="text-3xl font-bold mb-8 text-gray-800">All Pets</h1>
 
-<%= form_with url: "/pets", method: :get, local: true do |f| %>
-  <%= f.label :search %>
-  <%= f.text_field :search %>
-  <%= f.submit "Search" %>
-<% end %>
+    <%= form_with url: "/pets", method: :get, local: true, class: "mb-8" do |f| %>
+      <%= f.label :search, class: "block font-medium mb-2 text-gray-800" %>
+      <div class="flex flex-wrap">
+        <%= f.text_field :search, class: "w-full md:w-3/4 border-2 border-gray-300 p-2 rounded-lg focus:outline-none focus:border-blue-500 text-gray-800" %>
+        <%= f.submit "Search", class: "w-full md:w-1/4 mt-4 md:mt-0 md:ml-2 px-4 py-2 font-semibold text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:bg-blue-700 focus:outline-none" %>
+      </div>
+    <% end %>
 
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <% @pets.each do |pet| %>
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+          <div class="p-4">
+            <h3 class="text-xl font-semibold mb-2 text-gray-800"><%= pet.name %></h3>
+            <p class="text-gray-700 mb-2"><span class="font-semibold text-gray-800">Age:</span> <%= pet.age %></p>
+            <p class="text-gray-700 mb-2"><span class="font-semibold text-gray-800">Breed:</span> <%= pet.breed %></p>
+            <p class="text-gray-700 mb-2"><span class="font-semibold text-gray-800">Adoptable:</span> <%= pet.adoptable %></p>
+            <p class="text-gray-700 mb-2"><span class="font-semibold text-gray-800">Shelter:</span> <%= pet.shelter_name %></p>
+            <div class="mt-4 flex justify-between">
+              <%= link_to "Edit #{pet.name}", "/pets/#{pet.id}/edit", class: "px-4 py-2 text-white font-semibold rounded-lg bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:outline-none" %>
+              <%= link_to "Delete #{pet.name}", "/pets/#{pet.id}", method: :delete, class: "px-4 py-2 text-white font-semibold rounded-lg bg-red-500 hover:bg-red-600 focus:bg-red-700 focus:outline-none" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
 
-<% @pets.each do |pet| %>
-  <h3><%= pet.name %></h3>
-  <p>Age: <%= pet.age %></p>
-  <p>Breed: <%= pet.breed %></p>
-  <p>Adoptable: </p>
-  <p>You can find <%= pet.name %> at <%= pet.shelter_name %>!</p>
-  <%= link_to "Edit #{pet.name}", "/pets/#{pet.id}/edit" %>
-  <%= link_to "Delete #{pet.name}", "/pets/#{pet.id}", method: :delete %>
-<% end %>
-
-<p><%= link_to "Start an Application", "/applications/new" %></p>
+    <p class="mt-10"><%= link_to "Start an Application", "/applications/new", class: "px-4 py-2 font-semibold rounded-lg text-white bg-green-500 hover:bg-green-600 focus:bg-green-700 focus:outline-none" %></p>
+  </div>
+</div>
