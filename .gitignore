@@ -92,3 +92,5 @@ yarn-debug.log*
 /storage/*
 !/storage/.keep
 /coverage
+/app/assets/builds/*
+!/app/assets/builds/.keep
